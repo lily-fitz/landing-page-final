@@ -166,7 +166,6 @@ button {
   width: 60px;
   height: 4px;
   margin-top: 20px;
-  margin-bottom: -20px;
 }
 
 main {
@@ -210,7 +209,7 @@ h3 {
 }
 
 @mixin caption {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 400;
 }
 
@@ -389,9 +388,24 @@ header {
     border-top: solid $lightborder 1px;
   }
 
-  .inner-container-two {
+  .inner-container {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .inner-container-col-one {
+    img {
+      -webkit-box-shadow: -4px 20px 10px 1px rgba(0, 0, 0, 0.05);
+      box-shadow: -4px 20px 10px 1px rgba(0, 0, 0, 0.05);
+      margin-top: 50px;
+      max-width: 350px;
+    }
+  }
+
+  .inner-container-col-two {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     place-items: center;
     gap: 0rem;
     padding: 1rem;
@@ -400,7 +414,6 @@ header {
   .team-member {
     position: relative;
     text-align: center;
-    padding: 1rem;
 
     img {
       display: inline-block;
@@ -427,9 +440,22 @@ header {
   }
 }
 
+@media only screen and (min-width: 30rem) {
+  #team {
+    .inner-container-col-two {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+}
+
 @media only screen and (min-width: 40rem) {
   #team {
-    .inner-container-two {
+    .inner-container {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr);
+      gap: 1rem;
+    }
+
+    .inner-container-col-two {
       grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.5fr);
       grid-auto-rows: 1fr;
       gap: 3rem;
@@ -438,7 +464,7 @@ header {
           hsla(15, 33%, 93%, 0.49),
           hsla(15, 33%, 93%, 0.49)
         ),
-        url('../assets/maporange.png');
+        url('../assets/maporangecrop.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -454,20 +480,38 @@ header {
 
     .inner-col-one {
       justify-content: space-around;
+
+      .team-member:nth-of-type(2) {
+        margin-left: 110%;
+        margin-right: -110%;
+      }
+
+      .team-member:nth-of-type(3) {
+        margin-left: 60%;
+        margin-right: -60%;
+        margin-top: -2rem;
+        margin-bottom: 2rem;
+      }
     }
 
     .inner-col-two {
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
 
     .inner-col-three {
       justify-content: flex-end;
-      gap: 10%;
+      gap: 30%;
+
+      .team-member:first-of-type {
+        margin-left: -50%;
+        margin-right: 50%;
+      }
     }
 
     .team-member {
       img {
-        max-width: 80px;
+        max-width: 50px;
+        transition: height 0.3s ease;
       }
 
       p {
@@ -478,6 +522,16 @@ header {
 
       img:hover + p {
         opacity: 1;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 54rem) {
+  #team {
+    .team-member {
+      img {
+        max-width: 70px;
       }
     }
   }
