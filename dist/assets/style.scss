@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap');
+
+$bg: #dfd6d4;
+$text: #000;
+
+$white: #fff;
+$black: #000;
+$primary: #0f6fff;
+$primary-light: rgba(244, 244, 249, 0.9);
+$border: rgb(15 23 42/0.12);
+$accent: #ff5500;
+$accent-bg: #ec4f00;
+
+$fs-intro: clamp(2.25rem, 4.5vw, 4rem);
+$fs-h1: clamp(2rem, 3.5vw, 3rem);
+$fs-h2: clamp(2rem, 2.75vw, 2.25rem);
+$fs-h3-5: clamp(1.25rem, 1.5vw, 1.75rem);
+$fs-h3: clamp(1.25rem, 3vw, 2.875rem);
+$fs-h4-5: clamp(1rem, 1.25vw, 1.25rem);
+$fs-h4: clamp(1.5rem, 2.25vw, 1.75rem);
+$fs-h5: clamp(1.25rem, 2vw, 1.375rem);
+$fs-h6: clamp(1.125rem, 1vw, 1.25rem);
+$fs-nav: 13px;
+
+$header-height: 40px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: $bg;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.8px;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+}
+
+img {
+  border-radius: 1px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  letter-spacing: 1.1px;
+  font-weight: 600;
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+}
+
+h3,
+h4 {
+  line-height: 1.4;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+ul {
+  margin: 0;
+  padding-inline-start: 0px;
+}
+
+input,
+button,
+textarea,
+select {
+  font-size: inherit;
+}
+
+img {
+  width: 100%;
+}
+
+// ////////////////////////////
+//  Accessibility
+// ///////////////////////////
+
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background: transparent;
+  color: black;
+  margin-inline: auto;
+  font-size: 0.875rem;
+  transform: translateY(-120%);
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  transition: transform 250ms ease-in;
+}
+
+// ////////////////////////////
+//  Utility
+// ///////////////////////////
+
+.container {
+  width: min(68rem, 100% - 2rem);
+  padding-inline: 3rem;
+  margin-inline: auto;
+}
+
+@media only screen and (max-width: 40rem) {
+  .container {
+    width: min(68rem, 100% - 2rem);
+    padding-inline: 1rem;
+    margin-inline: auto;
+  }
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  letter-spacing: inherit;
+  color: $bg;
+  font-weight: 300;
+  padding: 1rem 1.25rem;
+}
+
+.btn {
+  color: rgb(55, 54, 54);
+  text-align: left;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  background: linear-gradient(140deg, #f7f7f7, #dcdcdc);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  border-radius: 0px;
+  border-left: solid 4px $accent;
+  margin-top: 14px;
+}
+
+main {
+  img {
+    width: 100%;
+  }
+}
+
+// ////////////////////////////
+//  Typography
+// ///////////////////////////
+
+h1 {
+  font-size: $fs-h1;
+}
+
+h2 {
+  font-size: $fs-h2;
+}
+
+h3 {
+  font-size: $fs-h3;
+}
+
+.subtitle {
+  font-size: $fs-h4-5;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  letter-spacing: 3px;
+  margin-top: 22px;
+}
+
+@mixin max-med {
+  max-width: 48ch;
+}
+
+// ////////////////////////////
+//  Header
+// ///////////////////////////
+
+header {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 10px;
+    font-size: $fs-nav;
+  }
+}
+
+// ////////////////////////////
+//  Intro
+// ///////////////////////////
+
+#intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 80vh;
+  place-items: center;
+
+  p {
+    @include max-med();
+  }
+
+  form {
+    display: grid;
+    align-items: flex-end;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  input[type='text'] {
+    font-size: 14px;
+    line-height: 20px;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    background: transparent;
+    background-color: #fdfdfd2d;
+    border-radius: 4px;
+  }
+
+  input::placeholder {
+    font-size: 11px;
+    color: rgb(214, 217, 222);
+    line-height: 20px;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+  }
+
+  button {
+    background: linear-gradient(140deg, rgb(215, 57, 0), $accent);
+    padding: 14px 14px 11px;
+    border-radius: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  svg {
+    color: white;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.view-all {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: white;
+
+  span {
+    color: rgba(255, 255, 255, 0.705);
+    font-size: 13px;
+  }
+
+  svg {
+    fill: $accent;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media only screen and (min-width: 50rem) {
+  #intro {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+
+    form {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 0.25fr;
+    }
+  }
+}
+
+// ////////////////////////////
+//  Lights
+// ///////////////////////////
+
+.lights-container {
+  width: 100%;
+  overflow: hidden;
+  background: white;
+
+  .box {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    float: left;
+    border: solid rgba(255, 255, 255, 0) 3px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: white;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 0 0;
+      background: transparent;
+      transition: 2s ease-in-out;
+      border-radius: 50%;
+    }
+
+    &:hover::before {
+      transition: 0s ease-in-out;
+      background: $accent;
+      backdrop-filter: blur(8px);
+      transition: 0s ease-in-out;
+    }
+  }
+}
+
+@media only screen and (max-width: 40rem) {
+  .lights-container .box:nth-child(odd) {
+    display: none;
+  }
+}
