@@ -1,32 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 
 $bg: #f3eae7;
+$bg: #f8f3f2;
+$bg: #fff;
+$bgpurple: linear-gradient(280deg, #6339da, #9366ed);
 $bgtransparent: #f3eae7bf;
+$bgtransparent: rgba(255, 255, 255, 0.698);
 $text: #000;
 
 $white: #fff;
 $black: #000;
 $primary: #0f6fff;
+$secondary: #05ee27;
 $primary-light: rgba(244, 244, 249, 0.9);
 $border: rgb(15 23 42/0.12);
 $lightborder: #fff;
 $accent: #ff5500;
-$accent-bg: #ec4f00;
+$accent-dark: #ec4f00;
+$accent-light: rgb(255, 221, 0);
 
 $fs-intro: clamp(2.25rem, 4.5vw, 4rem);
 $fs-h1: clamp(2rem, 3.5vw, 3rem);
-$fs-h2: clamp(2rem, 2.75vw, 2.25rem);
-$fs-h3-5: clamp(1.25rem, 1.5vw, 1.75rem);
-$fs-h3: clamp(1.25rem, 3vw, 2.875rem);
-$fs-h4-5: clamp(1rem, 1.25vw, 1.25rem);
-$fs-h4: clamp(1.5rem, 2.25vw, 1.75rem);
+$fs-h2: clamp(2rem, 3vw, 1.625rem);
+$fs-h3: clamp(1.25rem, 1.5vw, 1.75rem);
+$fs-h4: clamp(0.875rem, 1.25vw, 0.9375rem);
 $fs-h5: clamp(1.25rem, 2vw, 1.375rem);
 $fs-h6: clamp(1.125rem, 1vw, 1.25rem);
-$fs-nav: 13px;
+$fs-nav: 14px;
+$ff-logo: 'Silkscreen', cursive;
 
 $br: 10px;
-$header-height: 40px;
+$header-height: 70px;
 
 *,
 *::before,
@@ -61,7 +67,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  letter-spacing: 1.1px;
+  letter-spacing: 0.9px;
   font-weight: 600;
 }
 
@@ -121,7 +127,7 @@ img {
 // ///////////////////////////
 
 .container {
-  width: min(68rem, 100% - 2rem);
+  width: min(74rem, 100% - 2rem);
   padding-inline: 3rem;
   margin-inline: auto;
 }
@@ -175,8 +181,7 @@ main {
 }
 
 @mixin pilv {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 // ////////////////////////////
@@ -193,15 +198,20 @@ h2 {
 
 h3 {
   font-size: $fs-h3;
+  margin-bottom: 30px;
 }
 
 .subtitle {
-  font-size: $fs-h4-5;
+  font-size: $fs-h4;
   font-weight: 300;
   text-transform: uppercase;
   margin-bottom: 14px;
   letter-spacing: 3px;
   margin-top: 22px;
+}
+
+@mixin max-sm {
+  max-width: 24ch;
 }
 
 @mixin max-med {
@@ -218,8 +228,12 @@ h3 {
 // ///////////////////////////
 
 header {
+  height: $header-height;
+  margin-bottom: -$header-height;
+
   .container {
     display: flex;
+    height: $header-height;
     align-items: center;
     justify-content: space-between;
   }
@@ -231,6 +245,8 @@ header {
     list-style: none;
     padding: 10px;
     font-size: $fs-nav;
+    color: white;
+    letter-spacing: 1px;
   }
 }
 
@@ -243,27 +259,79 @@ header {
 }
 
 // ////////////////////////////
+//  Logo
+// ///////////////////////////
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo svg {
+  width: 34px;
+  height: 34px;
+  margin-right: 12px;
+}
+
+.logo .company-name {
+  font-size: 30px;
+  font-family: $ff-logo;
+  font-weight: 400;
+  letter-spacing: 3px;
+  padding-bottom: 4px;
+}
+
+header .logo .company-name {
+  color: white;
+}
+
+footer .logo svg path {
+  fill: black !important;
+}
+
+// ////////////////////////////
 //  Intro
 // ///////////////////////////
 
 #intro {
+  background: $bgpurple;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 80px;
+
   .container {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    min-height: 80vh;
+    gap: 2rem;
+    min-height: 90vh;
     place-items: center;
+    padding-top: $header-height;
+  }
+
+  .intro-col-one {
+    order: 1;
+  }
+
+  .intro-col-two img {
+    max-height: 460px;
+    border-radius: $br;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.037);
   }
 
   p {
     @include max-med();
   }
 
+  h1 {
+    @include max-sm();
+  }
+
   form {
     display: grid;
     align-items: flex-end;
     gap: 1.25rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
   }
 
   label {
@@ -293,8 +361,12 @@ header {
   }
 
   button {
-    background: linear-gradient(140deg, hsl(16, 100%, 42%), $accent);
-    padding: 14px 14px 11px;
+    background: linear-gradient(
+      140deg,
+      hwb(20deg 0% 0% / 94%),
+      hsla(20, 100%, 50%, 0.807)
+    );
+    padding: 12px 12px 9px;
     border-radius: 30%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
@@ -318,7 +390,7 @@ header {
   }
 
   svg {
-    fill: $accent;
+    fill: white;
     width: 18px;
     height: 18px;
   }
@@ -326,11 +398,17 @@ header {
 
 @media only screen and (min-width: 50rem) {
   #intro {
+    padding-top: 0px;
+    padding-bottom: 0px;
+
     .container {
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
     }
     form {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 0.25fr;
+    }
+    .intro-col-one {
+      order: 0;
     }
   }
 }
@@ -385,7 +463,6 @@ header {
 #team {
   .container {
     @include pilv();
-    border-top: solid $lightborder 1px;
   }
 
   .inner-container {
@@ -394,21 +471,13 @@ header {
     gap: 3rem;
   }
 
-  .inner-container-col-one {
-    img {
-      -webkit-box-shadow: -4px 20px 10px 1px rgba(0, 0, 0, 0.05);
-      box-shadow: -4px 20px 10px 1px rgba(0, 0, 0, 0.05);
-      margin-top: 50px;
-      max-width: 350px;
-    }
-  }
-
   .inner-container-col-two {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     place-items: center;
     gap: 0rem;
     padding: 1rem;
+    min-height: 380px;
   }
 
   .team-member {
@@ -417,7 +486,7 @@ header {
 
     img {
       display: inline-block;
-      outline: solid 1px rgba(255, 85, 0, 0.64);
+      box-shadow: 0 0 1px #00000025;
       border-radius: 50%;
       aspect-ratio: 1;
       object-fit: cover;
@@ -451,7 +520,7 @@ header {
 @media only screen and (min-width: 40rem) {
   #team {
     .inner-container {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
       gap: 1rem;
     }
 
@@ -460,11 +529,13 @@ header {
       grid-auto-rows: 1fr;
       gap: 3rem;
       padding: 0;
-      background-image: linear-gradient(
-          hsla(15, 33%, 93%, 0.49),
-          hsla(15, 33%, 93%, 0.49)
-        ),
-        url('../assets/maporangecrop.png');
+      // background-image: linear-gradient(
+      //     hsla(15, 33%, 93%, 0.49),
+      //     hsla(15, 33%, 93%, 0.49)
+      //   ),
+      //   url('../assets/maporangecrop.png');
+      background-image: linear-gradient(hsla(0, 0%, 100%, 0.7), hsla(0, 0%, 100%, 0.7)),
+        url('../assets/map.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -534,5 +605,163 @@ header {
         max-width: 70px;
       }
     }
+  }
+}
+
+// ////////////////////////////
+//  Five
+// ///////////////////////////
+
+#five {
+  .container {
+    @include pilv();
+  }
+
+  .inner-container {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 70px;
+  }
+
+  .inner-container-x1 {
+    display: grid;
+    gap: 2rem;
+
+    img {
+      border-radius: $br;
+    }
+  }
+}
+
+@media only screen and (min-width: 50rem) {
+  #five {
+    .inner-container {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .inner-container-x1 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}
+
+// ////////////////////////////
+//  Footer
+// ///////////////////////////
+
+footer {
+  background-size: cover;
+  background-position: bottom center;
+  border-top: solid 1px #e6e6e6;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.99),
+      rgba(255, 255, 255, 0.905)
+    ),
+    url('../assets/building.png');
+  background-size: cover;
+  background-position: bottom center;
+}
+
+.footer-main {
+  display: grid;
+  grid-gap: 3rem;
+  padding-top: 100px;
+  padding-bottom: 80px;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    font-size: $fs-h3;
+    line-height: 0.9;
+    margin-bottom: 26px;
+  }
+
+  div:first-of-type p {
+    font-size: 12px;
+    max-width: 54ch;
+  }
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+    list-style: none;
+    padding-left: 2px;
+    font-size: 14px;
+  }
+
+  li {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  i {
+    font-size: 18px;
+    color: $accent;
+  }
+}
+
+.company-resources {
+  text-align: right;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 40rem) {
+  .footer-main {
+    grid-gap: 5rem;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+  }
+
+  .company-resources {
+    text-align: left;
+  }
+
+  .company-resources > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.footer-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.25rem 0.25rem;
+  margin-bottom: 36px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+svg.meta {
+  width: 20px;
+  height: 20px;
+}
+
+@media only screen and (min-width: 54rem) {
+  .footer-main {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 3fr);
+  }
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: gray;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    list-style: none;
   }
 }
